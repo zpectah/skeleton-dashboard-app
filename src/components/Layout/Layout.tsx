@@ -3,20 +3,27 @@ import { styled } from '@mui/material';
 import {
   HEADER_HEIGHT_DEFAULT,
   MAIN_MIN_HEIGHT_DEFAULT,
+  MAIN_MIN_HEIGHT_MINIMAL,
   SIDEBAR_WIDTH_DEFAULT,
 } from '../../styles/constants';
 import { LayoutProps } from './types';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
 import { Sidebar } from '../Sidebar';
+import { Breadcrumbs } from '../Breadcrumbs';
 
 const StyledOuterWrapper = styled('div')<{ isDefault: boolean }>(
-  ({ isDefault }) => `
-    width: ${isDefault ? `calc(100% - ${SIDEBAR_WIDTH_DEFAULT})` : `100%`};
+  (props) => `
+    width: ${
+      props.isDefault ? `calc(100% - ${SIDEBAR_WIDTH_DEFAULT})` : `100%`
+    };
   height: 100%;
-  margin-top: ${isDefault ? HEADER_HEIGHT_DEFAULT : 0};
+  margin-top: ${props.isDefault ? HEADER_HEIGHT_DEFAULT : 0};
+  padding-top: ${props.theme.spacing()};
+  padding-bottom: ${props.theme.spacing()};
   position: relative;
-  left: ${isDefault ? SIDEBAR_WIDTH_DEFAULT : 0};
+  left: ${props.isDefault ? SIDEBAR_WIDTH_DEFAULT : 0};
+  background-color: ${props.theme.palette.grey['100']};  
 `
 );
 
@@ -25,21 +32,25 @@ const StyledInnerWrapper = styled('div')`
   display: flex;
 `;
 
-const StyledMain = styled('main')`
+const StyledMain = styled('main')(
+  (props) => `
   width: 100%;
   min-height: ${MAIN_MIN_HEIGHT_DEFAULT};
-
+  background-color: ${props.theme.palette.grey['100']};
+  color: ${props.theme.palette.text.primary};
+  
   &.is-centered {
-    min-height: 100vh;
+    min-height: ${MAIN_MIN_HEIGHT_MINIMAL};
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
-`;
+`
+);
 
 const Layout = (props: LayoutProps) => {
-  const { children, variant = 'default' } = props;
+  const { children, variant = 'default', withBreadcrumbs } = props;
 
   const isDefaultLayout = useMemo(() => variant === 'default', [variant]);
 
@@ -50,6 +61,7 @@ const Layout = (props: LayoutProps) => {
           <StyledInnerWrapper>
             <Sidebar />
             <StyledMain>
+              {withBreadcrumbs && <Breadcrumbs />}
               {children}
               <Footer />
             </StyledMain>
