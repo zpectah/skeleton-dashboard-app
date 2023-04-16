@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppLayout } from '../../components';
+import { Layout } from '../../components';
 
-const Issues = () => <AppLayout>Issues</AppLayout>;
+const Issues = () => <Layout>Issues</Layout>;
 
 export default Issues;

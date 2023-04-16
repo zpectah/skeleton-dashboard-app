@@ -1,6 +1,12 @@
 import React from 'react';
-import { AppLayout } from '../../components';
+import { Layout } from '../../components';
 
-const Error404 = () => <AppLayout>Error404</AppLayout>;
+const Error404 = () => (
+  <Layout variant="centered">
+    Error404
+    <br />
+    <p>Error page</p>
+  </Layout>
+);
 
 export default Error404;

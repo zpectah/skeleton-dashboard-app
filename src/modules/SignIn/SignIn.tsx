@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppLayout } from '../../components';
+import { Layout } from '../../components';
 
-const SignIn = () => <AppLayout>SignIn</AppLayout>;
+const SignIn = () => <Layout variant="centered">SignIn</Layout>;
 
 export default SignIn;
