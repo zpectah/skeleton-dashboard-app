@@ -1,5 +1,6 @@
 import React from 'react';
+import { AppLayout } from '../../components';
 
-const SignIn = () => <>SignIn</>;
+const SignIn = () => <AppLayout>SignIn</AppLayout>;
 
 export default SignIn;

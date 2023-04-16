@@ -1,5 +1,6 @@
 import React from 'react';
+import { AppLayout } from '../../components';
 
-const Dashboard = () => <>Dashboard</>;
+const Dashboard = () => <AppLayout>Dashboard</AppLayout>;
 
 export default Dashboard;
